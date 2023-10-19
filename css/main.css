@@ -8,55 +8,88 @@
   body {
     display: flex;
     justify-content: center;
-    background-color: white;
-    /* font-family: Arial, Helvetica, sans-serif; */
+    background-color: #A9C9FF;
+    background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%); /* got these from https://cssgradient.io/gradient-backgrounds/ */
   }
   
-  .container {
+.container {
     width: 80%;
     max-width: 30em;
     position: absolute;
     margin-top: 5em;
   }
   
-  h1 {
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    font-size: 32px;
     padding: 15px 0;
-  }
+}
+
+p {
+    font-size: 12px;
+    padding: 15px 0;
+    position: relative;
+    bottom: -8px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
   
-  #new-task {
-    border: 2px solid black;
+#new-task {
+    border: 5px solid black;
+    border-radius: 8px;
     position: relative;
     background: #fff;
     padding: 1.5em;
     display: grid;
-    grid-template-columns: 8fr 2fr;
+    grid-template-columns: 9fr 3fr;
     grid-column-gap: 1em;
-  }
+}
   
-  #new-task > input {
+#new-task > input {
     font-size: 16px;
     border: none;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid grey;
     padding: 0.5em;
-  }
+}
   
-  #new-task > input:focus { /* remove default outline */
+#new-task > input:focus { /* remove default outline */
     outline: none;
-  }
+}
   
-  #new-task > button {
-    border: none;
+#new-task > button {
+    border: 3px solid black;
+    border-radius: 4px;
     background-color: black;
     color: white;
     cursor: pointer;
-  }
+}
+
+#new-task > button:hover {
+    background-color: rgb(43, 76, 207);
+    color: white;
+}
   
-  ul {
+#new-task > button:active {
+    background-color: rgb(34, 54, 134);
+}
+
+ul {
     margin-top: 2em;
-  }
+}
   
-  ul li {
-    border: 1px solid black;
+ul li {
+    background-color: white;
+    border-radius: 8px;
+    border: 3px solid black;
     list-style: none;
     font-size: 16px;
     padding: 1.5em 0;
@@ -64,9 +97,9 @@
     cursor: pointer;
     position: relative;
     margin-bottom: 0.8em;
-  }
+}
   
-  ul li::before {
+ul li::before {
     content: '';
     position: absolute;
     height: 1.5em;
@@ -76,16 +109,16 @@
     background-position: center;
     left: 20px;
     top: 20px;
-  }
+}
   
-  ul li.checked {
+ul li.checked {
     color: #555;
     text-decoration: line-through;
-  }
+}
   
-  ul li.checked::before {
+ul li.checked::before {
     background-image: url(/assets/checkbox_active.svg);
-  }
+}
   
   ul li span {
     position: absolute;
@@ -97,8 +130,21 @@
     color: #555;
     line-height: 40px;
     text-align: center;
-  }
+    
+}
   
-  ul li span:hover {
+ul li span:hover {
     background-color: lightgrey;
-  }
+    border-radius: 4px;
+}
+
+
+/* for smartphones */
+@media only screen and (max-width: 600px) {
+    body {
+        background-color: #FF9A8B;
+background-image: linear-gradient(90deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%);
+
+    }
+
+}

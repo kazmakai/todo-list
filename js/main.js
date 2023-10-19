@@ -30,6 +30,9 @@ function addTask() {
   if (inputField.value === "") {
     alert("You need to enter something.");
   } else {
+    const soundEffect = new Audio();
+    soundEffect.src = "./audio/Add.mp3"
+    soundEffect.play(); 
     let list = document.createElement('li')
     list.innerHTML = inputField.value; // transferring inputField text to the list
     listContainer.appendChild(list); // display the list using the listContainer
@@ -37,17 +40,40 @@ function addTask() {
     span.innerHTML = "\u00d7";
     list.appendChild(span);
   }
-  inputField.value = ""; // clears the inputField when buttonis clicked
+  inputField.value = ""; // clears the inputField when button is clicked
+  saveData();
 };
 
 // check task
 function checkTask(event) {
   if (event.target.tagName === 'LI') { // making toggle
     event.target.classList.toggle('checked');
+    if (event.target.classList.contains('checked')) {
+        const soundEffect = new Audio();
+        soundEffect.src = "./audio/checked.mp3"
+        soundEffect.play(); 
+      }
+    saveData();
   } else if (event.target.tagName === "SPAN") {
+    const soundEffect = new Audio();
+    soundEffect.src = "./audio/delete.mp3"
+    soundEffect.play(); 
     event.target.parentElement.remove();
+    saveData();
   }
 }
+
+// save data in local storage
+function saveData() {
+    localStorage.setItem("data", listContainer.innerHTML) // saving all the new tasks within the listContainer
+}
+
+// retrieve and show data in local storage
+function showSavedData() {
+    listContainer.innerHTML = localStorage.getItem("data");
+}
+showSavedData();
+
 
 
 
