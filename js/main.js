@@ -3,6 +3,8 @@ let deleteTask;
 let editTask;
 let updatetask = "";
 let count;
+let soundEffect = new Audio();
+let isMuted = false
 
 /*----- app's state -----*/
 
@@ -11,6 +13,7 @@ let count;
 const inputField = document.querySelector('#new-task > input');
 const newTaskButton = document.querySelector('#push')
 const listContainer = document.querySelector('#list-container')
+const muteButton = document.querySelector('#mute');
 
 /*----- event listeners -----*/
 listContainer.addEventListener('click', checkTask);
@@ -22,6 +25,7 @@ inputField.addEventListener("keypress", function(event) { // code snippet I got 
   }
 });
 
+muteButton.addEventListener('click', toggleMuted);
 
 /*----- functions -----*/
 
@@ -30,7 +34,6 @@ function addTask() {
   if (inputField.value === "") {
     alert("You need to enter something.");
   } else {
-    const soundEffect = new Audio();
     soundEffect.src = "./audio/Add.mp3"
     soundEffect.play(); 
     let list = document.createElement('li')
@@ -48,19 +51,33 @@ function addTask() {
 function checkTask(event) {
   if (event.target.tagName === 'LI') { // making toggle
     event.target.classList.toggle('checked');
-    if (event.target.classList.contains('checked')) {
-        const soundEffect = new Audio();
+    if (event.target.classList.contains('checked')) { //
         soundEffect.src = "./audio/checked.mp3"
         soundEffect.play(); 
       }
     saveData();
   } else if (event.target.tagName === "SPAN") {
-    const soundEffect = new Audio();
     soundEffect.src = "./audio/delete.mp3"
     soundEffect.play(); 
     event.target.parentElement.remove();
     saveData();
   }
+}
+
+
+// mute/unmute sound effects
+function toggleMuted(event) {
+    const muteButton = event.target;
+    isMuted = !isMuted;
+
+    if (isMuted) {
+        muteButton.style.backgroundImage = 'url(../assets/audioOff.png)';
+        soundEffect.volume = 0
+    } else {
+        muteButton.style.backgroundImage = 'url(../assets/audioOn.png)'
+        soundEffect.volume = 1
+    }
+    saveData();
 }
 
 // save data in local storage
@@ -74,25 +91,3 @@ function showSavedData() {
 }
 showSavedData();
 
-
-
-
-/* 
-Default state:
-- only the div > #new-task is active
-
-1. 
-when the "Add Task" button is clicked: 
-- if, the text input is empty, return alert, 
-- else, take the text and push it down to the tasks and empty the text input
-
-2. 
-when a task is checked: 
-- change it to the one with the class ".completed". 
-- revert it back when it's unchecked.
-
-3. When the delete button is clicked:
-- remove the list altogether
-
-
-*/

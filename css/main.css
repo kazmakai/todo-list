@@ -8,8 +8,7 @@
   body {
     display: flex;
     justify-content: center;
-    background-color: #A9C9FF;
-    background-image: linear-gradient(180deg, #A9C9FF 0%, #FFBBEC 100%); /* got these from https://cssgradient.io/gradient-backgrounds/ */
+    background-color: #6dc4ef;
   }
   
 .container {
@@ -64,8 +63,8 @@ a {
 #new-task > input:focus { /* remove default outline */
     outline: none;
 }
-  
-#new-task > button {
+
+#push {
     border: 3px solid black;
     border-radius: 4px;
     background-color: black;
@@ -73,12 +72,16 @@ a {
     cursor: pointer;
 }
 
-#new-task > button:hover {
+#push::before{
+    content: 'Add task';
+}
+
+#push:hover {
     background-color: rgb(43, 76, 207);
     color: white;
 }
   
-#new-task > button:active {
+#push:active {
     background-color: rgb(34, 54, 134);
 }
 
@@ -104,7 +107,7 @@ ul li::before {
     position: absolute;
     height: 1.5em;
     width: 1.5em;
-    background-image: url(../assets/checkbox.svg);
+    background-image: url(../assets/unchecked.svg);
     background-size: cover;
     background-position: center;
     left: 20px;
@@ -117,10 +120,10 @@ ul li.checked {
 }
   
 ul li.checked::before {
-    background-image: url(../assets/checkbox_active.svg);
+    background-image: url(../assets/checked.svg);
 }
   
-  ul li span {
+ul li span {
     position: absolute;
     right: 10px;
     top: 15px;
@@ -138,13 +141,54 @@ ul li span:hover {
     border-radius: 4px;
 }
 
+#mute {
+    content: '';
+    position: relative;
+    height: 4em;
+    width: 4em;
+    background-color: transparent;
+    border: transparent;
+    background-size: cover;
+    background-position: center;
+    background-image: url(../assets/audioOn.png);
+    cursor: pointer;
+}
+
+/* .unmute {
+    background-image: url(../assets/audioOn.png);
+} */
+
 
 /* for smartphones */
 @media only screen and (max-width: 600px) {
     body {
-        background-color: #FF9A8B;
-background-image: linear-gradient(90deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%);
-
+        background-color: #f7b42d;
+    }
+    
+    #new-task > input {
+        font-size: 14px;
     }
 
+
+    ul li {
+        font-size: 14px;
+    }
+
+    ul li::before{
+        top: 18px;
+    }
+
+    ul li span {
+        top: 8px
+    }
+
+    h1 {
+        font-size: 24px;
+        padding: 5px 0;
+    }
+
+    #push::before{
+        content: '+';
+        font-size: 20px;
+    }
 }
