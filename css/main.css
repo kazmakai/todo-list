@@ -150,7 +150,7 @@ ul li span:hover {
     border: transparent;
     background-size: cover;
     background-position: center;
-    background-image: url(../assets/audioOn.png);
+    background-image: url(../assets/audioOn.svg);
     cursor: pointer;
 }
 

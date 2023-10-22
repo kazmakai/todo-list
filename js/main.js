@@ -71,10 +71,10 @@ function toggleMuted(event) {
     isMuted = !isMuted;
 
     if (isMuted) {
-        muteButton.style.backgroundImage = 'url(../assets/audioOff.png)';
+        muteButton.style.backgroundImage = 'url(../assets/audioOff.svg)';
         soundEffect.volume = 0
     } else {
-        muteButton.style.backgroundImage = 'url(../assets/audioOn.png)'
+        muteButton.style.backgroundImage = 'url(../assets/audioOn.svg)'
         soundEffect.volume = 1
     }
     saveData();
