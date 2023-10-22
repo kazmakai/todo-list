@@ -77,7 +77,6 @@ function toggleMuted(event) {
         muteButton.style.backgroundImage = 'url(../assets/audioOn.svg)'
         soundEffect.volume = 1
     }
-    saveData();
 }
 
 // save data in local storage
