@@ -29,7 +29,7 @@ muteButton.addEventListener('click', toggleMuted);
 
 /*----- functions -----*/
 
-// add tasks
+// add and delete tasks
 function addTask() {
   if (inputField.value === "") {
     alert("You need to enter something.");
@@ -47,7 +47,7 @@ function addTask() {
   saveData();
 };
 
-// check task
+// check and uncheck tasks
 function checkTask(event) {
   if (event.target.tagName === 'LI') { // making toggle
     event.target.classList.toggle('checked');
